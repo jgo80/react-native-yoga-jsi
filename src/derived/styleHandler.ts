@@ -103,7 +103,6 @@ export type NodeStyle = {
 
 export function applyStyle(node: YogaNode, style: NodeStyle = {}): void {
   for (const key of Object.keys(style)) {
-    console.log('applying style: ', key, style[key]);
     try {
       switch (key) {
         case 'alignContent':
