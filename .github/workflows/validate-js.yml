@@ -1,0 +1,98 @@
+name: Validate JS
+
+on:
+  push:
+    branches:
+      - main
+      - 0.x
+    paths:
+      - '.github/workflows/validate-js.yml'
+      - 'src/**'
+      - '*.json'
+      - '*.js'
+      - '*.lock'
+      - 'example/src/**'
+      - 'example/*.json'
+      - 'example/*.js'
+      - 'example/*.lock'
+      - 'example/*.tsx'
+  pull_request:
+    paths:
+      - '.github/workflows/validate-js.yml'
+      - 'src/**'
+      - '*.json'
+      - '*.js'
+      - '*.lock'
+      - 'example/src/**'
+      - 'example/*.json'
+      - 'example/*.js'
+      - 'example/*.lock'
+      - 'example/*.tsx'
+
+jobs:
+  compile_js:
+    name: Compile JS (tsc)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.1.26
+
+      - name: Install reviewdog
+        uses: reviewdog/action-setup@v1
+
+      - name: Bootstrap JS (rnqc)
+        run: |
+          bun install
+
+      - name: Bootstrap JS (example)
+        working-directory: example
+        run: |
+          bun install
+
+      - name: Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
+        run: |
+          bun tsc | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run TypeScript in example/ # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
+        run: |
+          cd example && bun tsc | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee && cd ..
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  lint_js:
+    name: JS Lint (eslint, prettier)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.1.26
+
+      - name: Bootstrap JS (rnqc)
+        run: |
+          bun install
+
+      - name: Bootstrap JS (example)
+        working-directory: example
+        run: |
+          bun install
+
+      - name: Run ESLint/Prettier (rnqc)
+        run: bun lint-fix && bun format-fix
+
+      - name: Run ESLint/Prettier (example)
+        run:
+          cd example && bun lint-fix && bun format-fix
+
+      - name: Verify no files have changed after auto-fix
+        run: git diff --exit-code HEAD -- . ':(exclude)bun.lockb'

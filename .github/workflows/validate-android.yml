@@ -1,0 +1,75 @@
+name: Validate Android
+
+on:
+  push:
+    branches:
+      - main
+      - 0.x
+    paths:
+      - '.github/workflows/validate-android.yml'
+      - 'android/**'
+      - '.editorconfig'
+  pull_request:
+    paths:
+      - '.github/workflows/validate-android.yml'
+      - 'android/**'
+      - '.editorconfig'
+
+jobs:
+  validate_android:
+    name: Gradle Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Clear up some disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.1.26
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+          cache: gradle
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: false
+
+      - name: Bootstrap JS (rnqc)
+        run: |
+          bun install
+
+      - name: Bootstrap JS (example)
+        working-directory: example
+        run: |
+          bun install
+
+      - name: Restore Gradle cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Run Gradle Lint
+        run: cd example/android && ./gradlew lint
+
+      - name: Parse Gradle Lint Report
+        uses: yutailang0119/action-android-lint@v4
+        with:
+          # ignore-warnings: true
+          report-path: example/android/app/build/reports/*.xml

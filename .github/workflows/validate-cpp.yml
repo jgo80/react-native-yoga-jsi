@@ -1,0 +1,38 @@
+name: 'Validate C++'
+
+on:
+  push:
+    branches:
+      - main
+      - 0.x
+    paths:
+      - '.github/workflows/validate-cpp.yml'
+      - 'cpp/**'
+      - 'android/src/main/cpp/**'
+  pull_request:
+    paths:
+      - '.github/workflows/validate-cpp.yml'
+      - 'cpp/**'
+      - 'android/src/main/cpp/**'
+
+jobs:
+  validate_cpp:
+    name: C++ Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run C++ Lint
+        uses: reviewdog/action-cpplint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          flags: --linelength=230
+          targets: --recursive cpp android/src/main/cpp
+          filter: "-legal/copyright\
+            ,-readability/todo\
+            ,-build/namespaces\
+            ,-whitespace/comments\
+            ,-build/include_order\
+            "

@@ -1,0 +1,80 @@
+name: Build iOS
+
+on:
+  push:
+    branches:
+      - main
+      - 0.x
+    paths:
+      - '.github/workflows/build-ios.yml'
+      - 'ios/**'
+      - '*.podspec'
+      - 'example/ios/**'
+  pull_request:
+    paths:
+      - '.github/workflows/build-ios.yml'
+      - 'ios/**'
+      - '*.podspec'
+      - 'example/ios/**'
+
+jobs:
+  build_ios_example:
+    name: Build iOS Example App
+    runs-on: macOS-latest
+    defaults:
+      run:
+        working-directory: example
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.1.26
+
+      - name: Bootstrap JS
+        run: |
+          bun install
+
+      - name: Setup Ruby (bundle)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+          working-directory: example/ios
+
+      - name: Restore Pods cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            example/ios/Pods
+            ~/Library/Caches/CocoaPods
+            ~/.cocoapods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Install Gems
+        working-directory: example/ios
+        run: bundle config set deployment 'true' && bundle install
+
+      - name: Install Pods
+        run: bun pods
+
+      - name: Install xcpretty
+        working-directory: example/ios
+        run: gem install xcpretty
+
+      - name: Build App
+        working-directory: example/ios
+        run: "set -o pipefail && xcodebuild \
+          CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ \
+          -derivedDataPath build -UseModernBuildSystem=YES \
+          -workspace QuickCryptoExample.xcworkspace \
+          -scheme QuickCryptoExample \
+          -sdk iphonesimulator \
+          -configuration Debug \
+          -destination 'platform=iOS Simulator,name=iPhone 11 Pro' \
+          build \
+          CODE_SIGNING_ALLOWED=NO | xcpretty"
