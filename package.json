@@ -1,6 +1,6 @@
 {
   "name": "react-native-yoga-jsi",
-  "version": "0.7.6",
+  "version": "0.0.1",
   "description": "A fast implementation of Node's `crypto` module written in C/C++ JSI",
   "packageManager": "bun@1.1.26",
   "main": "lib/commonjs/index",
@@ -62,9 +62,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
     "@eslint/js": "10.0.0",
