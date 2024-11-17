@@ -55,7 +55,6 @@ type TreeItem<T extends string> = NodeTree<T> | NodeTree<T>[];
 
 export function generateStyledLayout<T extends string>(layout: NodeTree<T>) {
   const layoutTree = new Layout(layout.key);
-  console.log('applying to: ', layout.key);
   applyStyle(layoutTree.layout[layout.key], layout.style);
   (function _parse(
     treeItem: TreeItem<T>,
@@ -71,7 +70,6 @@ export function generateStyledLayout<T extends string>(layout: NodeTree<T>) {
       treeItem = treeItem as NodeTree<T>;
       if (parentKey !== null) {
         const addedNode = layoutTree.addNodeTo(parentKey, treeItem.key, index);
-        console.log('applying to: ', treeItem.key);
         applyStyle(addedNode, treeItem.style);
       }
       if (treeItem.children) {

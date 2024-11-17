@@ -114,7 +114,6 @@ export const TextLayout = () => {
         textNode.setMeasureFunc(width => {
           paragraph.layout(Math.round(width));
           const height = paragraph.getHeight();
-          console.log(width, paragraph.getLongestLine());
           return {
             width: paragraph.getLongestLine(),
             height,
