@@ -366,7 +366,7 @@ namespace nodeProperties
             if (count > 1 && arguments[1].isNumber())
                 ownerHeight = arguments[1].getNumber();
 
-            if (count == 3)
+            if (count == 3 && arguments[2].isNumber())
                 direction = static_cast<YGDirection>(arguments[2].getNumber());
 
             YGNodeCalculateLayout(node, ownerWidth, ownerHeight, direction);

@@ -158,3 +158,71 @@ package-lock.json
 packages/*
 yarn.lock
 .java-version
+
+
+# OSX
+#
+testProj.DS_Store
+
+# Xcode
+#
+testProjbuild/
+testProj*.pbxuser
+testProj!default.pbxuser
+testProj*.mode1v3
+testProj!default.mode1v3
+testProj*.mode2v3
+testProj!default.mode2v3
+testProj*.perspectivev3
+testProj!default.perspectivev3
+testProjxcuserdata
+testProj*.xccheckout
+testProj*.moved-aside
+testProjDerivedData
+testProj*.hmap
+testProj*.ipa
+testProj*.xcuserstate
+testProjios/.xcode.env.local
+
+# Android/IntelliJ
+#
+testProjbuild/
+testProj.idea
+testProj.gradle
+testProjlocal.properties
+testProj*.iml
+testProj*.hprof
+testProj.cxx/
+testProj*.keystore
+testProj!debug.keystore
+
+# node.js
+#
+testProjnode_modules/
+testProjnpm-debug.log
+testProjyarn-error.log
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+testProj**/fastlane/report.xml
+testProj**/fastlane/Preview.html
+testProj**/fastlane/screenshots
+testProj**/fastlane/test_output
+
+# Bundle artifact
+testProj*.jsbundle
+
+# Ruby / CocoaPods
+testProj/ios/Pods/
+testProj/vendor/bundle/
+
+# Temporary files created by Metro to check the health of the file watcher
+testProj.metro-health-check*
+
+# testing
+testProj/coverage
