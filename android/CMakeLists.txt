@@ -53,7 +53,6 @@ target_link_libraries(
   ${LOG_LIB}                             # <-- Logcat logger
   ReactAndroid::jsi                      # <-- RN: JSI
   android                                # <-- Android JNI core
-  openssl::crypto                        # <-- OpenSSL (Crypto)
 )
 
 # Conditionally link libraries based on ReactAndroid version

@@ -1,5 +1,5 @@
 #import <React/RCTBridgeModule.h>
 
-@interface QuickCryptoModule : NSObject <RCTBridgeModule>
+@interface YogaJSIModule : NSObject <RCTBridgeModule>
 
 @end

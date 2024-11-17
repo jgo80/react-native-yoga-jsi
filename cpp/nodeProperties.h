@@ -542,7 +542,7 @@ namespace nodeProperties
         INSTALL_HOST_FUN(setDirtiedFunc, 1, {
             auto dirtiedFunc = std::make_shared<Function>(arguments[0].asObject(runtime).asFunction(runtime));
 
-            YGNodeSetDirtiedFunc(node, [](YGNodeRef node)
+            YGNodeSetDirtiedFunc(node, [](YGNodeConstRef node)
                                  {
             auto *context = static_cast<std::pair<std::shared_ptr<Function>, Runtime*> *>(YGNodeGetContext(node));
             if (!context)
@@ -564,7 +564,7 @@ namespace nodeProperties
         INSTALL_HOST_FUN(setMeasureFunc, 1, {
             auto measureFunc = std::make_shared<Function>(arguments[0].asObject(runtime).asFunction(runtime));
 
-            YGNodeSetMeasureFunc(node, [](YGNodeRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode) -> YGSize
+            YGNodeSetMeasureFunc(node, [](YGNodeConstRef node, float width, YGMeasureMode widthMode, float height, YGMeasureMode heightMode) -> YGSize
                                  {
                         auto *context = static_cast<std::pair<std::shared_ptr<Function>, Runtime*> *>(YGNodeGetContext(node));
                         if (!context)
