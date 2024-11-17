@@ -152,7 +152,7 @@ lint/tmp/
 .npmrc
 
 # v1.x and higher stuff
-example0/
+example/
 tsconfig.tsbuildinfo
 package-lock.json
 packages/*
