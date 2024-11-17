@@ -18,6 +18,15 @@ This library aims to expose Yoga APIs to javascript, enabling advanced layout fu
 
 ---
 
+## Installation
+
+To install this library, use the following command:
+
+```bash
+npm i react-native-yoga-jsi
+```
+___
+
 ## APIs
 
 ### Core API
@@ -58,11 +67,11 @@ The derived API is structured to feel like the standard React Native style API.
 
 Here are a few examples demonstrating the use of this library:
 
-### Example 1: Text Layout with Core API
+### Example 1: Text Layout
 
 [View Example](./testProj/src/navigators/children/TextLayout/TextLayout.tsx)
 
-### Example 2: Animated Layout with Derived API
+### Example 2: Animated Layout
 
 [View Example](./testProj/src/navigators/children/AnimatedExample/AnimatedExample.tsx)
 
