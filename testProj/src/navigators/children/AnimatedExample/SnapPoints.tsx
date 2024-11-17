@@ -2,6 +2,7 @@
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {SharedValue} from 'react-native-reanimated';
+import {Button} from '../../../components';
 
 const snapPoints = [0.25, 0.45, 0.8, 1];
 
@@ -13,16 +14,19 @@ export const SnapPoints = ({
   return (
     <View style={styels.cont}>
       {snapPoints.map(p => (
-        <TouchableOpacity
+        <Button
+          style={styels.button}
+          key={p}
+          title={
+            <>
+              {p * 100}
+              <Text style={styels.tSmall}> %</Text>
+            </>
+          }
           onPress={() => {
             sliderProgess.value = p;
           }}
-          key={p}>
-          <Text style={styels.text}>
-            {p * 100}
-            <Text style={styels.tSmall}> %</Text>
-          </Text>
-        </TouchableOpacity>
+        />
       ))}
     </View>
   );
@@ -36,15 +40,8 @@ const styels = StyleSheet.create({
     marginHorizontal: 16,
     justifyContent: 'space-between',
   },
-  text: {
-    fontSize: 14,
-    backgroundColor: 'black',
-    width: 56,
-    height: 30,
-    lineHeight: 29,
-    fontWeight: '600',
-    textAlign: 'center',
-    color: 'white',
+  button: {
+    width: 76,
   },
   tSmall: {
     fontSize: 11,

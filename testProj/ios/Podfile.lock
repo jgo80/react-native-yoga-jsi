@@ -952,7 +952,7 @@ PODS:
     - React
     - React-callinvoker
     - React-Core
-  - react-native-yoga-jsi (0.0.3):
+  - react-native-yoga-jsi (0.1.0):
     - glog
     - OpenSSL-Universal
     - RCT-Folly (= 2022.05.16.00)
@@ -1404,7 +1404,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 672a9342eb75a4d0663306e94d4dfc88aee73b93
   react-native-safe-area-context: 4532f1a0c5d34a46b9324ccaaedcb5582a302b7d
   react-native-skia: 1e567f394d9e2a15d03825d70db99f2a5ab11d81
-  react-native-yoga-jsi: b2612d602af4a8f9e5b93d960a2a67dda256a509
+  react-native-yoga-jsi: d3bbfd6a73af50cdf936eb74dd8e100d02c8350f
   React-nativeconfig: 2e44d0d2dd222b12a5183f4bcaa4a91881497acb
   React-NativeModulesApple: 8aa032fe6c92c1a3c63e4809d42816284a56a9b0
   React-perflogger: f9367428cf475f4606b5965c1d5a71781bb95299

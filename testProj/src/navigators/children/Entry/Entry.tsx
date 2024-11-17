@@ -3,9 +3,10 @@ import type {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import type {RootStackParamList} from '../../RootProps';
 import {useNavigation} from '@react-navigation/native';
+import {Button} from '../../../components';
 
 type EntryProps = NativeStackScreenProps<RootStackParamList, 'Entry'>;
 
@@ -27,7 +28,6 @@ export const Entry: React.FC<EntryProps> = () => {
           navigation.navigate('AnimatedExample');
         }}
       />
-      {/* <Button /> */}
     </View>
   );
 };

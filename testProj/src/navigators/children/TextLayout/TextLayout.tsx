@@ -8,7 +8,7 @@ import {
   useFonts,
 } from '@shopify/react-native-skia';
 import React, {useMemo} from 'react';
-import {Button, Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, SafeAreaView, StyleSheet, View} from 'react-native';
 import {
   makeMutable,
   runOnJS,
@@ -20,6 +20,7 @@ import {createLayout, Direction, useStyle} from 'react-native-yoga-jsi';
 
 // @ts-expect-error no ts definitions
 import Laila from './Laila.ttf';
+import {Button} from '../../../components';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -33,12 +34,15 @@ type RectProps = {
   rect: Mutable<SkRect>;
 };
 
+const availableWidht = screenWidth - 32;
+const strokeWidth = 4;
+
 export const TextLayout = () => {
   const lailaFont = useFonts({
     laila: [Laila],
   });
 
-  const width = useSharedValue(screenWidth - 32);
+  const containerWidth = useSharedValue(availableWidht);
 
   const paragraph = useMemo(() => {
     if (!lailaFont) return null;
@@ -68,7 +72,15 @@ export const TextLayout = () => {
           };
         } else
           return {
-            rect: makeMutable(rect(left, top, width, height)),
+            rect: makeMutable(
+              // need to make correction for stroke width, unlike react native view boarder expands both inside and outside
+              rect(
+                left + strokeWidth / 2,
+                top + strokeWidth / 2,
+                width - strokeWidth,
+                height - strokeWidth,
+              ),
+            ),
           };
       },
       onUpdate: (key, node, value) => {
@@ -85,10 +97,10 @@ export const TextLayout = () => {
           width.value = nodeWidth;
         } else
           (value as RectProps).rect.value = rect(
-            top,
-            left,
-            nodeWidth,
-            nodeHeight,
+            top + strokeWidth / 2,
+            left + strokeWidth / 2,
+            nodeWidth - strokeWidth,
+            nodeHeight - strokeWidth,
           );
       },
       onValueGet: (_key, _node, value) => {
@@ -121,36 +133,44 @@ export const TextLayout = () => {
   };
 
   useDerivedValue(() => {
-    runOnJS(updateContWidth)(width.value);
+    runOnJS(updateContWidth)(containerWidth.value);
   });
 
   return (
-    <>
-      <Canvas style={styles.canvas}>
-        <Rect
-          style={'stroke'}
-          strokeWidth={5}
-          color={'red'}
-          {...(canvasStyles('container') as RectProps)}
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.innerCont}>
+        <Canvas style={styles.canvas}>
+          <Rect
+            style={'stroke'}
+            strokeWidth={strokeWidth}
+            color={'red'}
+            {...(canvasStyles('container') as RectProps)}
+          />
+          <Paragraph
+            paragraph={paragraph}
+            {...(canvasStyles('textNode') as ParaProps)}
+          />
+        </Canvas>
+        <Button
+          title={'Set width to half'}
+          onPress={() => {
+            containerWidth.value = availableWidht / 2;
+          }}
         />
-        <Paragraph
-          paragraph={paragraph}
-          {...(canvasStyles('textNode') as ParaProps)}
+        <Button
+          title={'Wet width to 75%'}
+          onPress={() => {
+            containerWidth.value = availableWidht * 0.75;
+          }}
         />
-      </Canvas>
-      <Button
-        title={'Halve width'}
-        onPress={() => {
-          width.value = width.value / 2;
-        }}
-      />
-      <Button
-        title={'Double width'}
-        onPress={() => {
-          width.value = width.value * 2;
-        }}
-      />
-    </>
+        <Button
+          title={'Full width'}
+          onPress={() => {
+            containerWidth.value = availableWidht;
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
@@ -159,7 +179,6 @@ const canvasLayout = createLayout({
   style: {
     padding: 16,
     width: screenWidth - 32,
-    margin: 16,
   },
   children: [
     {
@@ -173,6 +192,14 @@ const canvasLayout = createLayout({
 
 const styles = StyleSheet.create({
   canvas: {
+    flex: 1,
+  },
+  safeAreaView: {
+    flex: 1,
+  },
+  innerCont: {
+    padding: 16,
+    gap: 16,
     flex: 1,
   },
 });
