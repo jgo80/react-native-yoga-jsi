@@ -44,6 +44,7 @@ The derived API is structured to feel like the standard React Native style API.
 | Core Yoga API bindings                      | ✅ Implemented |
 | Derived React Native style like API         | 🚧 In Progress |
 | Performance optimizations                   | 🚧 In Progress |
+| Write tests                                 | 🚧 In Progress |
 | Support more Android versions               | 📝 Planned     |
 | Compatibility with Reanimated's UI thread   | 📝 Planned     |
 | Spacer primitive (SwiftUI like)             | 📝 Planned     |
