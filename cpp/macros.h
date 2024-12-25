@@ -1,19 +1,6 @@
 #ifndef RN_YOGA_MACROS_H
 #define RN_YOGA_MACROS_H
 
-// #define CREATE_INSTALL_HOST_FUN(funcName, argCount, scopeVar, rt, where, body) \
-    //     auto funcName = Function::createFromHostFunction(rt,                                                                                                         \
-//                                                      PropNameID::forAscii(rt, #funcName),                                                                        \
-//                                                      argCount,                                                                                                   \
-//                                                      [scopeVar](Runtime & runtime, const Value &thisValue, const Value *arguments, size_t count) -> Value body); \
-//     where.setProperty(rt, #funcName, move(funcName));
-
-// #define INSTALL_HOST_FUN_TO_CONFIG(funcName, argCount, body) \
-//     CREATE_INSTALL_HOST_FUN(funcName, argCount, body, config, jsiRuntime, configObject)
-
-// // #define INSTALL_HOST_FUN(funcName, argCount, body) \
-// //     CREATE_INSTALL_HOST_FUN(funcName, argCount, body, node, runtime, nodeObject)
-
 #define SET_AUTO_PERCENT_NUMBER(autoSetter, percentSetter, numberSetter)                 \
     if (arguments[0].isString())                                                         \
     {                                                                                    \
