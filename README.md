@@ -8,7 +8,7 @@
 | Platform    | Supported Versions |
 | ----------- | ------------------ |
 | **iOS**     | Above 0.73.0       |
-| **Android** | 0.73.\*            |
+| **Android** | Above 0.73.0\*            |
 
 ---
 
