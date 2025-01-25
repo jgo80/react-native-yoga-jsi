@@ -1,18 +1,16 @@
 import { NativeModules } from 'react-native';
-import type { Yoga } from './coreTypes';
-// import * as derived from './derived';
-// import * as coreTypes from './coreTypes';
+import type { Yoga as YogaType } from './coreTypes';
 
 (function () {
   NativeModules.YogaJSI.install();
 })();
 
-//@ts-expect-error gotta fix it later
-const YogaModule: {
-  Yoga: Yoga;
-} = global;
+declare global {  
+  const Yoga: YogaType;
+}
 
-export default YogaModule.Yoga;
+
+export default Yoga;
 export * from './derived';
 export * from './coreTypes';
 

@@ -28,7 +28,7 @@
 #define ON_VALUE_PERCENT_UND_NUM(arg, onPercentage, onUndefined, onNumber)           \
     if (arg.isString())                                                              \
     {                                                                                \
-        std::string stringValue = arguments[0].getString(runtime).utf8(runtime);     \
+        std::string stringValue = arg.getString(runtime).utf8(runtime);     \
         float percentage = std::stof(stringValue.substr(0, stringValue.size() - 1)); \
         onPercentage;                                                                \
     }                                                                                \
@@ -45,7 +45,7 @@
 #define ON_VALUE_AUTO_PERCENT_UND_NUM(arg, onAuto, onPercentage, onUndefined, onNumber)  \
     if (arg.isString())                                                                  \
     {                                                                                    \
-        std::string stringValue = arguments[0].getString(runtime).utf8(runtime);         \
+        std::string stringValue = arg.getString(runtime).utf8(runtime);                  \
         if (stringValue == "auto")                                                       \
             onAuto;                                                                      \
         else                                                                             \

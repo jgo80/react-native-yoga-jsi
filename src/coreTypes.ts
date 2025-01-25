@@ -145,7 +145,7 @@ type Size = {
   height: number;
 };
 
-type Value = {
+export type Value = {
   unit: Unit;
   value: number;
 };
@@ -189,7 +189,8 @@ export type Node = {
   getBorder(edge: Edge): number;
   getChild(index: number): Node;
   getChildCount(): number;
-  getComputedBorder(edge: Edge): number;
+  // safe edge
+  getComputedBorder(edge: Edge.Left | Edge.Right | Edge.Bottom | Edge.Top | Edge.Start | Edge.End): number;
   getComputedBottom(): number;
   getComputedHeight(): number;
   getComputedLayout(): Layout;
@@ -205,6 +206,7 @@ export type Node = {
   getFlexBasis(): Value;
   getFlexDirection(): FlexDirection;
   getFlexGrow(): number;
+  getFlex(): number;
   getFlexShrink(): number;
   getFlexWrap(): Wrap;
   getHeight(): Value;
