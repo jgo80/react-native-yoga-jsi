@@ -226,3 +226,8 @@ testProj.metro-health-check*
 
 # testing
 testProj/coverage
+
+UNLINKED_TEST_PROJECTS/
+LINKED_TESTING_PROJECTS/
+version_74_6/
+version_73/

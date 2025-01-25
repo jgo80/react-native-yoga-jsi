@@ -110,7 +110,7 @@ namespace nodeProperties
         })
 
         INSTALL_HOST_FUN(getHeight, 0, {
-            return Value(static_cast<double>(YGNodeLayoutGetWidth(node)));
+            SET_YGVALUE(YGNodeStyleGetHeight(node));
         })
 
         INSTALL_HOST_FUN(getComputedHeight, 0, {
@@ -127,8 +127,6 @@ namespace nodeProperties
 
         INSTALL_HOST_FUN(setPadding, 2, {
             auto edge = YGEdge(arguments[0].getNumber());
-            printf("edge: %d\n", edge);
-            printf("value: %f\n", arguments[1].getNumber());
             ON_VALUE_PERCENT_UND_NUM(
                 arguments[1],
                 YGNodeStyleSetPaddingPercent(node, edge, percentage),
@@ -167,7 +165,7 @@ namespace nodeProperties
 
         INSTALL_HOST_FUN(setMarginPercent, 2, {
             auto edge = YGEdge(arguments[0].getNumber());
-            ON_NUM_UNDEFINED(arguments[1], YGNodeStyleSetMarginPercent(node, edge, YGUndefined), YGNodeStyleSetMarginPercent(node, edge, arguments[1].getNumber()));
+            ON_NUM_UNDEFINED(arguments[1], YGNodeStyleSetMarginPercent(node, edge, arguments[1].getNumber()), YGNodeStyleSetMarginPercent(node, edge, YGUndefined));
         })
 
         INSTALL_HOST_FUN(setPosition, 2, {
@@ -215,7 +213,7 @@ namespace nodeProperties
         });
 
         INSTALL_HOST_FUN(setFlex, 1, {
-            ON_NUM_UNDEFINED(arguments[0], YGNodeStyleSetFlex(node, YGUndefined), YGNodeStyleSetFlex(node, arguments[0].getNumber()));
+            ON_NUM_UNDEFINED(arguments[0], YGNodeStyleSetFlex(node, arguments[0].getNumber()), YGNodeStyleSetFlex(node, YGUndefined));
         });
 
         INSTALL_HOST_FUN(setFlexGrow, 1, {
@@ -223,7 +221,7 @@ namespace nodeProperties
         });
 
         INSTALL_HOST_FUN(setFlexShrink, 1, {
-            ON_NUM_UNDEFINED(arguments[0], YGNodeStyleSetFlexShrink(node, YGUndefined), YGNodeStyleSetFlexShrink(node, arguments[0].getNumber()));
+            ON_NUM_UNDEFINED(arguments[0], YGNodeStyleSetFlexShrink(node, arguments[0].getNumber()), YGNodeStyleSetFlexShrink(node, YGUndefined));
         });
 
         INSTALL_HOST_FUN(setFlexBasis, 1, {
@@ -261,6 +259,10 @@ namespace nodeProperties
             RETURN_AS_DOUBLE(YGNodeStyleGetFlexGrow(node));
         });
 
+        INSTALL_HOST_FUN(getFlex, 0, {
+            RETURN_AS_DOUBLE(YGNodeStyleGetFlex(node));
+        });
+
         INSTALL_HOST_FUN(getFlexShrink, 0, {
             RETURN_AS_DOUBLE(YGNodeStyleGetFlexShrink(node));
         });
@@ -280,7 +282,7 @@ namespace nodeProperties
 
         INSTALL_HOST_FUN(setBorder, 2, {
             auto edge = YGEdge(arguments[0].getNumber());
-            ON_NUM_UNDEFINED(arguments[1], YGNodeStyleSetBorder(node, edge, YGUndefined), YGNodeStyleSetBorder(node, edge, arguments[1].getNumber()));
+            ON_NUM_UNDEFINED(arguments[1], YGNodeStyleSetBorder(node, edge, arguments[1].getNumber()), YGNodeStyleSetBorder(node, edge, YGUndefined));
         });
 
         INSTALL_HOST_FUN(getBorder, 1, {
