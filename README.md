@@ -1,5 +1,5 @@
 > **⚠️ Experimental Warning**  
-> This library is in its experimental phase and may have breaking changes. It is considered **unstable** and may have issues. Do not use in production.
+> This library is in its experimental phase and may have breaking changes.
 
 ---
 
@@ -7,8 +7,8 @@
 
 | Platform    | Supported Versions |
 | ----------- | ------------------ |
-| **iOS**     | Above 0.73.0       |
-| **Android** | Above 0.73.0\*            |
+| **iOS**     | >= 0.73.0          |
+| **Android** | >= 0.73.0          |
 
 ---
 
@@ -25,7 +25,8 @@ To install this library, use the following command:
 ```bash
 npm i react-native-yoga-jsi
 ```
-___
+
+---
 
 ## APIs
 
@@ -48,18 +49,18 @@ The derived API is structured to feel like the standard React Native style API.
 
 ## Roadmap
 
-| Feature                                     | Status         |
-| ------------------------------------------- | -------------- |
-| Core Yoga API bindings                      | ✅ Implemented |
-| Derived React Native style like API         | 🚧 In Progress |
-| Performance optimizations                   | 🚧 In Progress |
-| Write tests                                 | 🚧 In Progress |
-| Support more Android versions               | 📝 Planned     |
-| Compatibility with Reanimated's UI thread   | 📝 Planned     |
-| Spacer primitive (SwiftUI like)             | 📝 Planned     |
-| Migrate to Nitro Module                     | 📝 Planned     |
-| Improved TypeScript support                 | 📝 Planned     |
-| Provide detailed documentation and examples | 📝 Planned     |
+| Feature                                        | Status                                                |
+| ---------------------------------------------- | ----------------------------------------------------- |
+| Core Yoga API bindings                         | 🌕 Implemented                                        |
+| Support all react native versions above 0.73.0 | 🌕 Implemented                                        |
+| Derived api similar to React Native stylesheet | 🌔 In Progress                                        |
+| Internal tests                                 | 🌔 In Progress                                        |
+| Compatibility with Reanimated's UI thread      | 🌓 Partly done (Not possible to jump between threads) |
+| Provide detailed documentation and examples    | 🌘 In Progress                                        |
+| Internal benchmarks                            | 🌘 In Progress                                        |
+| Jest mocks                                     | 🌘 In Progress                                        |
+| Spacer primitive (like SwiftUI)                | 🌑 Planned                                            |
+| Migrate to Nitro Module                        | 🌑 Planned                                            |
 
 ---
 
@@ -77,6 +78,12 @@ Here are a few examples demonstrating the use of this library:
 
 ---
 
+## Architecture
+
+The structural foundation of this library originates from [react-native-quick-crypto](https://github.com/margelo/react-native-quick-crypto/tree/v0.7.11).
+
+---
+
 ## Contribution
 
 This library is experimental and open to contributions. Please submit issues, feature requests, or pull requests via the repository.
@@ -89,4 +96,4 @@ MIT
 
 ---
 
-Happy Coding! 🚀
+Happy Hacking! 🚀
