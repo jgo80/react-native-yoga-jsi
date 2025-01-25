@@ -6,7 +6,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import type {RootStackParamList} from '../../RootProps';
 import {useNavigation} from '@react-navigation/native';
-import {Button} from '../../../components';
+import {Button, Spacer} from '../../../components';
 
 type EntryProps = NativeStackScreenProps<RootStackParamList, 'Entry'>;
 
@@ -26,6 +26,25 @@ export const Entry: React.FC<EntryProps> = () => {
         title="Animated Layout Demo"
         onPress={() => {
           navigation.navigate('AnimatedExample');
+        }}
+      />
+      <Button
+        title="Animated Text Layout"
+        onPress={() => {
+          navigation.navigate('AnimatedExample');
+        }}
+      />
+      <Spacer />
+      <Button
+        title="API Tests"
+        onPress={() => {
+          navigation.navigate('ApiTests');
+        }}
+      />
+      <Button
+        title="Benchmarks"
+        onPress={() => {
+          navigation.navigate('Benchmarks');
         }}
       />
     </View>

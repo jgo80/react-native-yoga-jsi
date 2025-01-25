@@ -1,11 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import {
-  StyleProp,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  ViewStyle,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, ViewStyle} from 'react-native';
 
 interface Props {
   title: React.ReactNode;
@@ -31,7 +25,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    backgroundColor: 'black',
     fontWeight: '600',
     color: 'white',
   },

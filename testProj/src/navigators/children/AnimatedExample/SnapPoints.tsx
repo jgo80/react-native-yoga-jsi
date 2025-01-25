@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-color-literals */
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
 import {SharedValue} from 'react-native-reanimated';
 import {Button} from '../../../components';
