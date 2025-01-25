@@ -1,6 +1,6 @@
 {
   "name": "react-native-yoga-jsi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Using Yoga with JSI in React Native",
   "packageManager": "bun@1.1.26",
   "main": "lib/commonjs/index",
@@ -45,19 +45,19 @@
     "android",
     "jsi",
     "c++",
-    "fast",
-    "web3"
+    "yoga",
+    "yoga-layout"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/margelo/react-native-yoga-jsi.git"
+    "url": "git+https://github.com/Swami-Laxmikant/react-native-yoga-jsi.git"
   },
-  "authors": "Szymon Kapała (szymon20000@gmail.com) & Marc Rousavy <me@mrousavy.com> (https://github.com/mrousavy)",
+  "authors": "Laxmikant Swami",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/margelo/react-native-yoga-jsi/issues"
+    "url": "https://github.com/Swami-Laxmikant/react-native-yoga-jsi/issues"
   },
-  "homepage": "https://github.com/margelo/react-native-yoga-jsi#readme",
+  "homepage": "https://github.com/Swami-Laxmikant/react-native-yoga-jsi",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
