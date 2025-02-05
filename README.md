@@ -1,5 +1,5 @@
 > **⚠️ Experimental Warning**  
-> This library is in its experimental phase and may have breaking changes.
+> This library is in its experimental phase, might be unstable, and may have breaking changes in the future.
 
 ---
 
@@ -55,7 +55,7 @@ The derived API is structured to feel like the standard React Native style API.
 | Support all react native versions above 0.73.0 | 🌕 Implemented                                        |
 | Derived api similar to React Native stylesheet | 🌔 In Progress                                        |
 | Internal tests                                 | 🌔 In Progress                                        |
-| Compatibility with Reanimated's UI thread      | 🌓 Partly done (Not possible to jump between threads) |
+| Compatibility with Reanimated's UI thread      | 🌓 Jumping between threads is unstable            |
 | Provide detailed documentation and examples    | 🌘 In Progress                                        |
 | Internal benchmarks                            | 🌘 In Progress                                        |
 | Jest mocks                                     | 🌘 In Progress                                        |
@@ -75,6 +75,11 @@ Here are a few examples demonstrating the use of this library:
 ### Example 2: Animated Layout
 
 [View Example](./testProj/src/navigators/children/AnimatedExample/AnimatedExample.tsx)
+
+### Example 2: Animated Text Layout
+
+[View Example](./testProj/src/navigators/children/AnimatedTextLayout/AnimatedTextLayout.tsx)
+
 
 ---
 

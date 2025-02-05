@@ -6,7 +6,6 @@ import { useOnDepsChange } from './useOnDepsChaneg';
 type GetNodeFn<T extends string> = (key: T) => Record<T, Node>[T];
 
 type Config<T extends string, U, V> = {
-  // size?: Size;
   direction?: Direction;
   onInit: (nodeKey: T, node: Node) => U;
   onUpdate?: (nodeKey: T, node: Node, value: U) => void;
@@ -14,11 +13,6 @@ type Config<T extends string, U, V> = {
   onValueGet: (nodeKey: T, node: Node, value: U) => V;
   onDepsChange?: (getNodeFn: GetNodeFn<T>) => void;
 };
-
-// type Size = {
-//   width: number;
-//   height: number;
-// };
 
 type RefRecord<T extends string, U> = Record<T, U>;
 

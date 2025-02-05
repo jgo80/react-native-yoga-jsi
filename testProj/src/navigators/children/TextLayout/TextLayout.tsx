@@ -18,28 +18,27 @@ import {
 import {Mutable} from 'react-native-reanimated/lib/typescript/commonTypes';
 import {createLayout, Direction, useStyle} from 'react-native-yoga-jsi';
 
-// @ts-expect-error no ts definitions
-import Laila from './Laila.ttf';
 import {Button} from '../../../components';
+import { assets } from '../../../assets';
 
 const screenWidth = Dimensions.get('window').width;
 
-type ParaProps = {
+export type ParaProps = {
   x: Mutable<number>;
   y: Mutable<number>;
   width: Mutable<number>;
 };
 
-type RectProps = {
+export type RectProps = {
   rect: Mutable<SkRect>;
 };
 
 const availableWidht = screenWidth - 32;
-const strokeWidth = 4;
+export const strokeWidth = 4;
 
 export const TextLayout = () => {
   const lailaFont = useFonts({
-    laila: [Laila],
+    laila: [assets.font],
   });
 
   const containerWidth = useSharedValue(availableWidht);

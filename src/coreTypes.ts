@@ -124,7 +124,7 @@ export enum Wrap {
   WrapReverse = 2,
 }
 
-type Layout = {
+export type Layout = {
   left: number;
   right: number;
   top: number;
@@ -133,14 +133,14 @@ type Layout = {
   height: number;
 };
 
-type AbsoluteLayout = {
+export type AbsoluteLayout = {
   left: number;
   top: number;
   width: number;
   height: number;
 };
 
-type Size = {
+export type Size = {
   width: number;
   height: number;
 };
@@ -190,7 +190,15 @@ export type Node = {
   getChild(index: number): Node;
   getChildCount(): number;
   // safe edge
-  getComputedBorder(edge: Edge.Left | Edge.Right | Edge.Bottom | Edge.Top | Edge.Start | Edge.End): number;
+  getComputedBorder(
+    edge:
+      | Edge.Left
+      | Edge.Right
+      | Edge.Bottom
+      | Edge.Top
+      | Edge.Start
+      | Edge.End,
+  ): number;
   getComputedBottom(): number;
   getComputedHeight(): number;
   getComputedLayout(): Layout;

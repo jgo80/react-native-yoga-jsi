@@ -1,9 +1,8 @@
-import type {EntryProps} from './children/Entry/EntryProps';
-
 export type RootStackParamList = {
-  Entry: EntryProps;
+  Entry: undefined;
   TextLayout: undefined;
   AnimatedExample: undefined;
   ApiTests: undefined;
   Benchmarks: undefined;
+  AnimatedTextLayout: undefined;
 };

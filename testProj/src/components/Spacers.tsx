@@ -1,6 +1,5 @@
 import {DimensionValue, StyleSheet, View} from 'react-native';
-
-const exist = <T,>(value: T) => value !== null && value !== undefined;
+import { exist } from './helpers';
 
 type Size = {
   size?: DimensionValue;

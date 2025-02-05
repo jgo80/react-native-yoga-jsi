@@ -22,6 +22,8 @@ const colors = {
 
 type Color = keyof typeof colors;
 
+const log = console.log;
+
 const colored = (
   str: string | undefined,
   color: Color,
@@ -35,11 +37,11 @@ const colored = (
 
 export const logFomatted = (data: Data[], logOnlyFails: boolean) => {
   const maxLen = data.reduce((acc, d) => Math.max(acc, d.title.length), 0);
-  const line = (len = 21, char = '─') => console.log(char.repeat(maxLen + len));
+  const line = (len = 21, char = '─') => log(char.repeat(maxLen + len));
 
   const nextLine = (times = 1) => {
     for (let i = 0; i < times; i++) {
-      console.log();
+      log();
     }
   };
   nextLine(3);
@@ -59,8 +61,8 @@ export const logFomatted = (data: Data[], logOnlyFails: boolean) => {
     if (!d.pass || !logOnlyFails) {
       drawFirstLine();
       if (d.type === 'step') {
-        console.log(` 🪜  ${cell(d.title)}`);
-      } else console.log(
+        log(` 🪜  ${cell(d.title)}`);
+      } else log(
         ` 📐 ${cell(d.title)}   `,
         ...result(d.pass),
         ` ${(d.timeTaken * 1000).toFixed(1).padStart(5, ' ')} μs\n`
@@ -71,7 +73,7 @@ export const logFomatted = (data: Data[], logOnlyFails: boolean) => {
     if (!d.pass) {
       drawFirstLine();
       nextLine();
-      console.log(
+      log(
         ` 🔍 Expected: ${colored(
           d.expected?.toString(),
           'green',
@@ -95,7 +97,7 @@ export const logFomatted = (data: Data[], logOnlyFails: boolean) => {
   const bl2 = 10 + passes.length;
   const bl3 = 9 + fails.length;
 
-  console.log(
+  log(
     colored(
       ' ┏' +
       '━'.repeat(bl1) +
@@ -107,7 +109,7 @@ export const logFomatted = (data: Data[], logOnlyFails: boolean) => {
       borderColor
     )
   );
-  console.log(
+  log(
     colored(' ┃', borderColor),
     'Total:  ',
     colored(total, 'brightBlue'),
@@ -119,7 +121,7 @@ export const logFomatted = (data: Data[], logOnlyFails: boolean) => {
     colored(fails, 'red'),
     colored('┃', borderColor)
   );
-  console.log(
+  log(
     colored(
       ' ┗' +
       '━'.repeat(bl1) +

@@ -9,6 +9,7 @@ import {AnimatedExample} from './children/AnimatedExample/AnimatedExample';
 import {colors} from '../styles/colors';
 import {ApiTests} from './children/ApiTests/ApiTests';
 import {Benchmarks} from './children/Benchmarks/Benchmarks';
+import { AnimatedTextLayout } from './children/AnimatedTextLayout/AnimatedTextLayout';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -54,6 +55,13 @@ export const Root: React.FC = () => {
           }}
           getComponent={() => Benchmarks}
         />
+        <Stack.Screen
+          name="AnimatedTextLayout"
+          options={{
+            title: 'Animated Text Layout',
+          }}
+          getComponent={() => AnimatedTextLayout}
+        />  
       </Stack.Navigator>
     </NavigationContainer>
   );

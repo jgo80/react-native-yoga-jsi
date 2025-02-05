@@ -421,7 +421,7 @@ namespace nodeProperties
         });
 
         INSTALL_HOST_FUN(setAspectRatio, 1, {
-            ON_NUM_UNDEFINED(arguments[0], YGNodeStyleSetAspectRatio(node, YGUndefined), YGNodeStyleSetAspectRatio(node, arguments[0].getNumber()));
+            ON_NUM_UNDEFINED(arguments[0], YGNodeStyleSetAspectRatio(node, arguments[0].getNumber()), YGNodeStyleSetAspectRatio(node, YGUndefined));
         });
 
         INSTALL_HOST_FUN(getAspectRatio, 0, {

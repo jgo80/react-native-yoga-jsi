@@ -1,6 +1,8 @@
 import Yoga, {Node, PositionType, Unit, Value} from 'react-native-yoga-jsi';
-// import { Pretify } from '../types';
-type Pretify<T> = T;
+
+type Prettify<T> = {
+  [K in keyof T]: T[K];
+};
 
 export const getNodes = (length = 2, inserted = true) => {
   const nodes = Array.from({length}, Yoga.Node.create);
@@ -100,6 +102,6 @@ export const value = (value: Value) => {
 };
 
 export type NPU = number | `${number}%` | undefined;
-export type NAPU = Pretify<NPU | 'auto'>;
+export type NAPU = Prettify<NPU | 'auto'>;
 
 export const roundBy = (v: number, n: number) => Math.round(v * n) / n;

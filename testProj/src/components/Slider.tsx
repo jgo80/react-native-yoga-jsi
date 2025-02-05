@@ -19,9 +19,14 @@ const totalDragDis = screenWidth - 32 - 16 - 10;
 export const Slider = ({
   sliderProgess,
   isSnapAnimationActive,
+  bounds,
 }: {
   sliderProgess: SharedValue<number>;
   isSnapAnimationActive: SharedValue<boolean>;
+  bounds: {
+    left: number;
+    right: number;
+  };
 }) => {
   const drag = useMemo(
     () =>
@@ -32,8 +37,8 @@ export const Slider = ({
         .onChange(e => {
           sliderProgess.value = clamp(
             sliderProgess.value + e.changeX / totalDragDis,
-            0.25,
-            1,
+            bounds.left,
+            bounds.right,
           );
         })
         .onFinalize(() => (isSnapAnimationActive.value = true)),
@@ -51,10 +56,17 @@ export const Slider = ({
     ],
   }));
 
+  const leftInactivePartWidth = totalDragDis * bounds.left + 8;
+  const rightInactivePartWidth = totalDragDis * (1 - bounds.right) + 8;
+
   return (
     <View style={styles.line}>
-      <View style={styles.inactiveSliderLeft} />
-      <View style={styles.inactiveSliderRight} />
+      <View
+        style={[styles.inactiveSliderLeft, {width: leftInactivePartWidth}]}
+      />
+      <View
+        style={[styles.inactiveSliderRight, {width: rightInactivePartWidth}]}
+      />
       <GestureHandlerRootView>
         <GestureDetector gesture={drag}>
           <Animated.View style={[styles.dragHandle, rStyle]} />
@@ -81,14 +93,12 @@ const styles = StyleSheet.create({
   },
   inactiveSliderLeft: {
     position: 'absolute',
-    width: totalDragDis * 0.25 + 8,
     backgroundColor: '#000a',
     height: '100%',
   },
   inactiveSliderRight: {
     position: 'absolute',
     right: 0,
-    width: 8,
     backgroundColor: '#000a',
     height: '100%',
   },

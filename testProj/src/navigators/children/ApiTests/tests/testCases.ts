@@ -215,7 +215,6 @@ export const positionTests = ({check, step}: RunnerCBHandlers) => {
 
   root.setFlexDirection(FlexDirection.ColumnReverse);
   child1.setPositionType(PositionType.Relative);
-  // child2.setPositionType(PositionType.Relative);
   root.calculateLayout(undefined, undefined);
 
   step('checking positions flex column reverse');
@@ -230,7 +229,6 @@ export const positionTests = ({check, step}: RunnerCBHandlers) => {
 
   step('position unit checking');
   check('child1 position type', ...position.isRelative(child1));
-  check('child2 position type', ...position.isRelative(child2));
   check('child2 position type', ...position.isStatic(child2));
   // TODO: case where position is child2 is unset // shoult not come static
 };

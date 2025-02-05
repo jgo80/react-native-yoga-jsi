@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-color-literals */
 import type {
   NativeStackNavigationProp,
   NativeStackScreenProps,
@@ -31,7 +32,7 @@ export const Entry: React.FC<EntryProps> = () => {
       <Button
         title="Animated Text Layout"
         onPress={() => {
-          navigation.navigate('AnimatedExample');
+          navigation.navigate('AnimatedTextLayout');
         }}
       />
       <Spacer />

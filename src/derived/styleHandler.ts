@@ -102,6 +102,7 @@ export type NodeStyle = {
 };
 
 export function applyStyle(node: YogaNode, style: NodeStyle = {}): void {
+  'worklet';
   for (const key of Object.keys(style)) {
     try {
       switch (key) {
@@ -297,6 +298,7 @@ export function applyStyle(node: YogaNode, style: NodeStyle = {}): void {
 }
 
 function alignContent(str?: AlignContent): Align {
+  'worklet';
   switch (str) {
     case 'flex-start':
       return Align.FlexStart;
@@ -317,6 +319,7 @@ function alignContent(str?: AlignContent): Align {
 }
 
 function alignItems(str?: AlignItems): Align {
+  'worklet';
   switch (str) {
     case 'flex-start':
       return Align.FlexStart;
@@ -333,6 +336,7 @@ function alignItems(str?: AlignItems): Align {
 }
 
 function boxSizing(str?: 'border-box' | 'content-box'): BoxSizing {
+  'worklet';
   switch (str) {
     case 'border-box':
       return BoxSizing.BorderBox;
@@ -343,6 +347,7 @@ function boxSizing(str?: 'border-box' | 'content-box'): BoxSizing {
 }
 
 function direction(str?: 'ltr' | 'rtl'): Direction {
+  'worklet';
   switch (str) {
     case 'ltr':
       return Direction.LTR;
@@ -353,6 +358,7 @@ function direction(str?: 'ltr' | 'rtl'): Direction {
 }
 
 function display(str?: 'none' | 'flex'): Display {
+  'worklet';
   switch (str) {
     case 'none':
       return Display.None;
@@ -365,6 +371,7 @@ function display(str?: 'none' | 'flex'): Display {
 function flexDirection(
   str?: 'row' | 'column' | 'row-reverse' | 'column-reverse',
 ): FlexDirection {
+  'worklet';
   switch (str) {
     case 'row':
       return FlexDirection.Row;
@@ -379,6 +386,7 @@ function flexDirection(
 }
 
 function flexWrap(str?: 'wrap' | 'nowrap' | 'wrap-reverse'): Wrap {
+  'worklet';
   switch (str) {
     case 'wrap':
       return Wrap.Wrap;
@@ -391,6 +399,7 @@ function flexWrap(str?: 'wrap' | 'nowrap' | 'wrap-reverse'): Wrap {
 }
 
 function justifyContent(str?: JustifyContent): Justify {
+  'worklet';
   switch (str) {
     case 'flex-start':
       return Justify.FlexStart;
@@ -409,6 +418,7 @@ function justifyContent(str?: JustifyContent): Justify {
 }
 
 function overflow(str?: 'visible' | 'hidden' | 'scroll'): Overflow {
+  'worklet';
   switch (str) {
     case 'visible':
       return Overflow.Visible;
@@ -421,6 +431,7 @@ function overflow(str?: 'visible' | 'hidden' | 'scroll'): Overflow {
 }
 
 function position(str?: 'absolute' | 'relative' | 'static'): PositionType {
+  'worklet';
   switch (str) {
     case 'absolute':
       return PositionType.Absolute;

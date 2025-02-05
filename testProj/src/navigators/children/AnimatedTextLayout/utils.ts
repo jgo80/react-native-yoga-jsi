@@ -1,22 +1,16 @@
-import type { Node } from '../coreTypes';
-import Yoga from '../index';
-import { applyStyle, type NodeStyle } from './styleHandler';
-
-export type NodeTree<T extends string> = {
-  key: T;
-  style?: NodeStyle;
-  children?: NodeTree<T>[];
-};
-
-export type NodeTreeKeys<T> = T extends NodeTree<infer K> ? K : never;
-
-export function createLayout<T extends string>(styles: NodeTree<T>) {
-  return styles;
-}
+import {rect} from '@shopify/react-native-skia';
+import {useEffect, useState} from 'react';
+import {
+  cancelAnimation,
+  makeMutable,
+  runOnUI,
+  useSharedValue,
+} from 'react-native-reanimated';
+import {applyStyle, Node, NodeTree} from 'react-native-yoga-jsi';
 
 type TreeItem<T extends string> = NodeTree<T> | NodeTree<T>[];
 
-function Layout<T extends string>(rootKey: T){
+function Layout<T extends string>(rootKey: T) {
   'worklet';
   const config = Yoga.Config.create();
   config.setPointScaleFactor(0);
@@ -60,7 +54,7 @@ export function generateStyledLayout<T extends string>(layout: NodeTree<T>) {
     treeItem: TreeItem<U>,
     index: number,
     isArray: boolean,
-    parentKey: U | null
+    parentKey: U | null,
   ) {
     'worklet';
     if (isArray) {
@@ -77,11 +71,55 @@ export function generateStyledLayout<T extends string>(layout: NodeTree<T>) {
         _parse(treeItem.children, 0, true, treeItem.key);
       }
     }
-  
+
     return layoutTree;
   }
-  
+
   _parse(layout, 0, false, null);
 
   return layoutTree;
 }
+
+export const useAnimatedLayout = <T extends string>(layout: NodeTree<T>) => {
+  type StyledLayout = ReturnType<typeof generateStyledLayout<T>>;
+
+  const parsedLayout = useSharedValue<StyledLayout | null>(null);
+  // just to run only once
+  useState(() =>
+    runOnUI(() => {
+      'worklet';
+      parsedLayout.value = generateStyledLayout(layout);
+    })(),
+  );
+
+  return parsedLayout;
+};
+
+const useCleanUp = (cb: () => void) => useEffect(() => cb, []);
+
+export const useSharedRect = (x = 0, y = 0, width = 0, height = 0) => {
+  const mutableRect = useState(() => makeMutable(rect(x, y, width, height)))[0];
+  useCleanUp(() => cancelAnimation(mutableRect));
+  return mutableRect;
+};
+
+export const useParaRect = () => {
+  const paraRect = useState(() => ({
+    x: makeMutable(0),
+    y: makeMutable(0),
+    width: makeMutable(0),
+  }))[0];
+
+  useCleanUp(() => {
+    cancelAnimation(paraRect.x);
+    cancelAnimation(paraRect.y);
+    cancelAnimation(paraRect.width);
+  });
+  return paraRect;
+};
+
+export const useSize = () => {
+  const sharedSize = useState(() => makeMutable({width: 0, height: 0}))[0];
+  useCleanUp(() => cancelAnimation(sharedSize));
+  return sharedSize;
+};

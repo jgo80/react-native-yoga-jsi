@@ -13,7 +13,7 @@ import {
 } from 'react-native-reanimated';
 import {Mutable} from 'react-native-reanimated/lib/typescript/commonTypes';
 import {createLayout, useStyle, NodeTreeKeys} from 'react-native-yoga-jsi';
-import {Slider} from './Slider';
+import {Slider} from '../../../components';
 import {InfoBox} from './InfoBox';
 import {SnapPoints} from './SnapPoints';
 
@@ -99,6 +99,7 @@ export function AnimatedExample() {
       <Slider
         isSnapAnimationActive={isSnapAnimationActive}
         sliderProgess={sliderProgess}
+        bounds={{left: 0.25, right: 1}}
       />
     </View>
   );

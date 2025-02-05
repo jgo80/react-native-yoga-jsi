@@ -3,7 +3,7 @@ import {Button, VSpacer} from '../../../components';
 import {logFomatted, runTest} from './tests';
 
 export const ApiTests = () => {
-  const runTestFn = () => {
+  const test = () => {
     const testResults = runTest();
     logFomatted(testResults, true);
   };
@@ -11,8 +11,8 @@ export const ApiTests = () => {
   return (
     <View style={styles.mainContainer}>
       <VSpacer />
-      <Text style={styles.text}>Check terminal to see results!</Text>
-      <Button onPress={runTestFn} title={'Click to run tests'} />
+      <Text style={styles.text}>Check metro logs to see results!</Text>
+      <Button onPress={test} title={'Click to run tests'} />
     </View>
   );
 };
