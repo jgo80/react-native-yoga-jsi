@@ -537,8 +537,7 @@ namespace nodeProperties
         });
 
         INSTALL_HOST_FUN(getGap, 1, {
-            auto gap = YGNodeStyleGetGap(node, static_cast<YGGutter>(arguments[0].getNumber()));
-            return Value(static_cast<double>(gap));
+            SET_YGVALUE(YGNodeStyleGetGap(node, static_cast<YGGutter>(arguments[0].getNumber())));
         });
 
         INSTALL_HOST_FUN(setDirtiedFunc, 1, {
